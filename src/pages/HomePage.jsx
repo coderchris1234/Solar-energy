@@ -244,15 +244,6 @@ function Homepage() {
         </BenefitsGrid>
       </BenefitsSection>
 
-      <GetStartedSection>
-        <GetStartedTitle>
-          Get Started <span>today</span>
-        </GetStartedTitle>
-        <GetStartedSubtitle>
-          Power up your service enterprise today 💡
-        </GetStartedSubtitle>
-        <JoinButton>Join Waitlist</JoinButton>
-      </GetStartedSection>
     </Container>
   );
 }

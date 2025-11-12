@@ -1,25 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 import { WiDaySunny } from 'react-icons/wi';
+// Import Link and NavLink from react-router-dom
+import { NavLink as RouterNavLink, Link } from 'react-router-dom';
 
 function Header() {
+  // const data = [] // Not used, can be removed
   return (
     <HeaderContainer>
-      <Logo>
+      {/* Use Link for the Logo to navigate to the home page */}
+      <LogoLink to="/">
         <SunIcon />
         <LogoText>Solyte</LogoText>
-      </Logo>
+      </LogoLink>
       <Nav>
-        <NavLink active>Product</NavLink>
-        <NavLink>Financial Portal</NavLink>
-        <NavLink>Education Hub</NavLink>
-        <NavLink>Get to Know Us</NavLink>
-        <NavLink>Why Choose Us</NavLink>
+        {/* Use RouterNavLink and the 'to' prop for navigation */}
+        <CustomNavLink to="/">Product</CustomNavLink>
+        <CustomNavLink to="/finance">Financial Portal</CustomNavLink>
+        <CustomNavLink to="/education">Education Hub</CustomNavLink>
+        <CustomNavLink to="/about">Get to Know Us</CustomNavLink>
+        <CustomNavLink to="/why-choose-us">Why Choose Us</CustomNavLink>
       </Nav>
       <JoinButton>Join Waitlist</JoinButton>
     </HeaderContainer>
   );
 }
+
+// --- Styled Components ---
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -30,16 +37,16 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid #e5e5e5;
 `;
 
-const Logo = styled.div`
+// New styled component for the Logo Link
+const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none; /* Important to remove default link styling */
 `;
 
-const Sun = styled(WiDaySunny)`
-  font-size: 32px;
-  color: #f5a623;
-`;
+// Note: The original 'Logo' styled component is replaced by 'LogoLink'
+// const Logo = styled.div`...` is no longer needed
 
 const SunIcon = styled(WiDaySunny)`
   font-size: 32px;
@@ -58,16 +65,23 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-const NavLink = styled.a`
-  color: ${props => props.active ? '#333' : '#999'};
+// Style the NavLink component from react-router-dom
+const CustomNavLink = styled(RouterNavLink)`
+  color: #999;
   text-decoration: none;
   font-size: 15px;
-  font-weight: ${props => props.active ? '600' : '400'};
+  font-weight: 400;
   cursor: pointer;
   transition: color 0.2s ease;
   
   &:hover {
     color: #333;
+  }
+
+  /* Styling for the active link, provided by NavLink's active prop */
+  &.active {
+    color: #333; /* Darker color for active state */
+    font-weight: 600; /* Bolder for active state */
   }
 `;
 
