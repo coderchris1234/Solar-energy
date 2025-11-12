@@ -18,7 +18,7 @@ function FinancePageContent() {
   return (
     <Container>
       <Hero>
-        <HeroTitle>Your Path to Ownership<br/>Starts Here</HeroTitle>
+        <HeroTitle>Your Path to Ownership<br />Starts Here</HeroTitle>
         <HeroSubtitle>
           Use our calculator to find a rent-to-own plan that works for you, compare
           options, and get pre-approved securely, no hidden fees, no stress.
@@ -181,17 +181,10 @@ function FinancePageContent() {
           </CompareCard>
         </CompareCards>
       </CompareSection>
-
-      <GetStartedSection>
-        <GetStartedTitle>Get Started <span>today</span></GetStartedTitle>
-        <GetStartedSubtitle>Power up your service enterprise today 💡</GetStartedSubtitle>
-        <JoinButton>Join Waitlist</JoinButton>
-      </GetStartedSection>
     </Container>
   );
 }
 
-// Styled Components
 const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: #333;

@@ -65,7 +65,6 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-// Style the NavLink component from react-router-dom
 const CustomNavLink = styled(RouterNavLink)`
   color: #999;
   text-decoration: none;
@@ -78,7 +77,6 @@ const CustomNavLink = styled(RouterNavLink)`
     color: #333;
   }
 
-  /* Styling for the active link, provided by NavLink's active prop */
   &.active {
     color: #333; /* Darker color for active state */
     font-weight: 600; /* Bolder for active state */
