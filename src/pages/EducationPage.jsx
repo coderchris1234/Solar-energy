@@ -158,7 +158,7 @@ function EducationHub() {
                 checked={selectedOption === 'lighting'}
                 onChange={(e) => setSelectedOption(e.target.value)}
               />
-              <RadioLabel>Just lighting and phone charging</RadioLabel>
+              <RadioLabel>Just lighting and phone chaarging</RadioLabel>
             </RadioOption>
 
             <RadioOption>
