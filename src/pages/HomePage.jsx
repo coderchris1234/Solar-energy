@@ -5,10 +5,15 @@ import { MdCheckCircle } from "react-icons/md";
 import { IoFlashSharp } from "react-icons/io5";
 import { BsBatteryCharging, BsPhone, BsWallet2 } from "react-icons/bs";
 import { RiLightbulbFlashLine } from "react-icons/ri";
+import light from "/image2.png";
+import kit from "/image1.png";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { MdOutlineCancel } from "react-icons/md";
 
 function Homepage() {
   const [monthlyPayment, setMonthlyPayment] = useState(15000);
   const [duration, setDuration] = useState(24);
+  const [showModal, setShowModal] = useState(false);
 
   const minPayment = 10000;
   const maxPayment = 150000;
@@ -29,11 +34,36 @@ function Homepage() {
             you go with our flexible rent-to-own plans.
           </HeroSubtitle>
           <HeroButtons>
-            <PrimaryButton>Join Waitlist</PrimaryButton>
+            <PrimaryButton onClick={() => setShowModal(true)}>
+              Join Waitlist
+            </PrimaryButton>
             <SecondaryButton>Pre- Order</SecondaryButton>
           </HeroButtons>
         </HeroContent>
       </Hero>
+      {showModal && (
+        <ModalOverlay onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <div className="modal">
+              <div>
+                <h2 className="join">Join the Waitlist</h2>
+                <p>Be the first to access our solar kits..</p>
+              </div>
+
+              <MdOutlineCancel
+                size={30}
+                onClick={() => setShowModal(false)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+            <input type="text" placeholder="Full Name" />
+            <input type="email" placeholder="Email Address" />
+            <button onClick={() => setShowModal(false)}>
+              Join Waitlist <IoIosArrowRoundForward size={40} />
+            </button>
+          </ModalContent>
+        </ModalOverlay>
+      )}
 
       <ChooseKitSection>
         <SectionTitle>
@@ -48,10 +78,7 @@ function Homepage() {
         <KitsGrid>
           <KitCard>
             <KitImageWrapper>
-              <img
-                src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&h=300&fit=crop"
-                alt="Lightning Kit"
-              />
+              <img src={light} alt="Lightning Kit" />
             </KitImageWrapper>
             <KitTitle>Lightning Kit</KitTitle>
             <KitSubtitle>Perfect for basic home lighting needs</KitSubtitle>
@@ -75,10 +102,7 @@ function Homepage() {
 
           <KitCard highlighted>
             <KitImageWrapper>
-              <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop"
-                alt="Small Appliances Kit"
-              />
+              <img src={kit} alt="Small Appliances Kit" />
             </KitImageWrapper>
             <KitTitle>Small Appliances Kit</KitTitle>
             <KitSubtitle>Power your essential home appliances</KitSubtitle>
@@ -97,7 +121,9 @@ function Homepage() {
               </Feature>
             </FeatureList>
             <KitPrice>₦25,000/month</KitPrice>
-            <KitButton primary>Join Waitlist</KitButton>
+            <KitButton primary onClick={() => setShowModal(true)}>
+              Join Waitlist
+            </KitButton>
           </KitCard>
         </KitsGrid>
       </ChooseKitSection>
@@ -190,7 +216,7 @@ function Homepage() {
                 <StepTitle>Choose payment duration</StepTitle>
                 <StepDescription>
                   Drag the slider to how long you want to pay the chosen amount
-                  for (ranging from 12months to 36 months
+                  for (ranging from 12months to 36 months)
                 </StepDescription>
               </StepContent>
             </Step>
@@ -243,12 +269,12 @@ function Homepage() {
           </BenefitCard>
         </BenefitsGrid>
       </BenefitsSection>
-
     </Container>
   );
 }
 
 // Styled Components
+
 const Container = styled.div`
   font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
   color: #333;
@@ -382,14 +408,13 @@ const KitCard = styled.div`
 
 const KitImageWrapper = styled.div`
   width: 100%;
-  height: 180px;
   margin-bottom: 25px;
   border-radius: 8px;
   overflow: hidden;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     object-fit: cover;
   }
 `;
@@ -526,10 +551,10 @@ const Slider = styled.input`
     to right,
     #f5a623 0%,
     #f5a623
-      ${(props) => ((props.value - props.min) / (props.max - props.min)) * 100}%,
-    #ddd
-      ${(props) => ((props.value - props.min) / (props.max - props.min)) * 100}%,
-    #ddd 100%
+      ${(props) => ((props.value - props.min) / (props.max - props.min)) * 100}%
+      #ddd
+      ${(props) => ((props.value - props.min) / (props.max - props.min)) * 100}%
+      #ddd 100%
   );
   outline: none;
   -webkit-appearance: none;
@@ -746,6 +771,95 @@ const JoinButton = styled.button`
     background: #e09515;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+  }
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 70%;
+  /* max-width: 400px; */
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.2s ease-in-out;
+
+  .modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .join {
+      // background: red;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    border: 1px solid #e09515;
+    outline: none;
+  }
+
+  button {
+    background: #f5a623;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+
+    &:hover {
+      background: #e09515;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 `;
 

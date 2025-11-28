@@ -1,27 +1,68 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import React, { useState } from "react";
+import styled from "styled-components";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { MdOutlineCancel } from "react-icons/md";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 function Footer() {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   return (
     <FooterWrapper>
       <GetStartedSection>
         <GetStartedTitle>
           Get Started <span>today</span>
         </GetStartedTitle>
-        <GetStartedSubtitle>Power up your service enterprise today 💡</GetStartedSubtitle>
-        <JoinButton>Join Waitlist</JoinButton>
+        <GetStartedSubtitle>
+          Power up your service enterprise today 💡
+        </GetStartedSubtitle>
+        <JoinButton onClick={() => setShowModal(true)}>
+          Join Waitlist
+        </JoinButton>
       </GetStartedSection>
+      {showModal && (
+        <ModalOverlay onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <div className="modal">
+              <div>
+                <h2 className="join">Join the Waitlist</h2>
+                <p>Be the first to access our solar kits..</p>
+              </div>
+
+              <MdOutlineCancel
+                size={30}
+                onClick={() => setShowModal(false)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+            <input type="text" placeholder="Full Name" />
+            <input type="email" placeholder="Email Address" />
+            <button onClick={() => setShowModal(false)}>
+              Join Waitlist <IoIosArrowRoundForward size={40} />
+            </button>
+          </ModalContent>
+        </ModalOverlay>
+      )}
 
       <FooterContainer>
         <Divider />
-        
+
         <FooterContent>
           <FooterSection>
             <FooterTitle>Quick Links</FooterTitle>
             <FooterLink>Products</FooterLink>
-            <FooterLink>Financial Portal</FooterLink>
-            <FooterLink>Educational Hub</FooterLink>
+            <FooterLink onClick={() => navigate("/finance")}>
+              Financial Portal
+            </FooterLink>
+            <FooterLink onClick={() => navigate("/education")}>
+              Educational Hub
+            </FooterLink>
           </FooterSection>
 
           <FooterSection>
@@ -73,7 +114,7 @@ const GetStartedTitle = styled.h2`
   font-weight: 400;
   color: white;
   letter-spacing: -0.5px;
-  
+
   span {
     color: #f5a623;
     font-weight: 400;
@@ -97,7 +138,7 @@ const JoinButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   transition: all 0.2s ease;
-  
+
   &:hover {
     background: #e09515;
     transform: translateY(-2px);
@@ -126,7 +167,7 @@ const FooterContent = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 80px;
   padding: 50px 0;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -151,7 +192,7 @@ const FooterLink = styled.a`
   cursor: pointer;
   transition: color 0.2s ease;
   font-weight: 300;
-  
+
   &:hover {
     color: white;
   }
@@ -173,16 +214,16 @@ const SocialIcon = styled.div`
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  
+
   svg {
     font-size: 16px;
     color: #f5a623;
   }
-  
+
   &:hover {
     background: #f5a623;
     transform: translateY(-2px);
-    
+
     svg {
       color: white;
     }
@@ -198,6 +239,95 @@ const Copyright = styled.div`
   font-weight: 300;
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 70%;
+  /* max-width: 400px; */
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.2s ease-in-out;
+
+  .modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .join {
+      // background: red;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    border: 1px solid #e09515;
+    outline: none;
+  }
+
+  button {
+    background: #f5a623;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+
+    &:hover {
+      background: #e09515;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 `;
 
 export default Footer;

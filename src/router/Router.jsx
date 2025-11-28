@@ -7,30 +7,31 @@ import FinancePage from "../pages/FinancePage";
 import WhyChooseUs from "../pages/WhyChooseUs";
 
 export const Element = createBrowserRouter([
-   {
-      path: "/",
-      element: <HomeLayout />,
-      children: [
-         {
-            path: "/",
-            element: <HomePage />
-         },
-         {
-            path: "/about",
-            element: <AboutUspage />
-         },
-         {
-            path: "/education",
-            element: <EducationPage />
-         },
-         {
-            path: "/finance",
-            element: <FinancePage />
-         },
-         {
-            path: "/why-choose-us",
-            element: <WhyChooseUs />
-         },
-      ]
-   }
-])
+  //   <ScrollToTop />,
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/about",
+        element: <AboutUspage />,
+      },
+      {
+        path: "/education",
+        element: <EducationPage />,
+      },
+      {
+        path: "/finance",
+        element: <FinancePage />,
+      },
+      {
+        path: "/why-choose-us",
+        element: <WhyChooseUs />,
+      },
+    ],
+  },
+]);
