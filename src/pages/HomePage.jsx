@@ -283,8 +283,7 @@ const Container = styled.div`
 
 const Hero = styled.section`
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1600&h=600&fit=crop")
-      center/cover;
+    url("SOLAR.jpg") center/cover;
   color: white;
   padding: 100px 20px;
   position: relative;

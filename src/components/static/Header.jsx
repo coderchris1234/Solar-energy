@@ -13,8 +13,7 @@ function Header() {
     <HeaderContainer>
       {/* Logo */}
       <LogoLink to="/">
-        <SunIcon />
-        <LogoText>Solyte</LogoText>
+        <img src="header.png" alt="" />
       </LogoLink>
 
       {/* Desktop Nav */}
@@ -100,7 +99,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 60px;
+  padding: 8px 60px;
   background: white;
   border-bottom: 1px solid #e5e5e5;
 
@@ -114,6 +113,13 @@ const LogoLink = styled(Link)`
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  /* background-color: red; */
+
+  img {
+    width: 95px;
+    height: 95px;
+    font-size: 20px;
+  }
 `;
 
 const SunIcon = styled(WiDaySunny)`
@@ -189,7 +195,7 @@ const MobileMenu = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  width: 75%;
+  width: 100%;
   height: 100vh;
   background: white;
   padding: 25px;

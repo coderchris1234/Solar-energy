@@ -172,6 +172,7 @@ function FinancePageContent() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  cursor: "pointer",
                 }}
               >
                 Join Waitlist <IoIosArrowRoundForward size={40} />
@@ -249,12 +250,15 @@ function FinancePageContent() {
 const Container = styled.div`
   font-family: "Segoe UI", sans-serif;
   color: #333;
+
+  button {
+    cursor: pointer;
+  }
 `;
 
 const Hero = styled.section`
   background: linear-gradient(rgba(45, 60, 80, 0.8), rgba(45, 60, 80, 0.8)),
-    url("https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&h=600&fit=crop")
-      center/cover;
+    url("SOLAR.jpg") center/cover;
   color: white;
   text-align: center;
   padding: 120px 20px;
