@@ -1,18 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaCheck, FaTimes } from 'react-icons/fa';
-import { AiOutlineClockCircle } from 'react-icons/ai';
-import { BsShield } from 'react-icons/bs';
-import { IoTrendingUpOutline } from 'react-icons/io5';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { FaCheck, FaTimes } from "react-icons/fa";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { BsShield } from "react-icons/bs";
+import { IoTrendingUpOutline } from "react-icons/io5";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { MdOutlineCancelPresentation } from "react-icons/md";
 
 const Container = styled.div`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
   color: #333;
 `;
 
 const HeroSection = styled.section`
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&h=400&fit=crop') center/cover;
+    url("SOLAR.jpg") center/cover;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -39,7 +42,7 @@ const HeroSubtitle = styled.p`
 `;
 
 const LearnMoreButton = styled.button`
-  background: #FFA500;
+  background: #ffa500;
   color: white;
   border: none;
   padding: 15px 60px;
@@ -50,12 +53,12 @@ const LearnMoreButton = styled.button`
   transition: background 0.3s;
 
   &:hover {
-    background: #FF8C00;
+    background: #ff8c00;
   }
 `;
 
 const WhySection = styled.section`
-  background: #F5F5F0;
+  background: #f5f5f0;
   padding: 60px 20px 80px;
   text-align: center;
 `;
@@ -64,9 +67,9 @@ const SectionTitle = styled.h2`
   font-size: 42px;
   margin: 0 0 10px 0;
   font-weight: 400;
-  
+
   span {
-    color: #FFA500;
+    color: #ffa500;
   }
 `;
 
@@ -92,7 +95,7 @@ const FeatureRow = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-  
+
   &:nth-child(even) {
     flex-direction: row-reverse;
   }
@@ -115,14 +118,14 @@ const FeatureTitle = styled.h3`
 `;
 
 const FeatureDescription = styled.p`
-  color: #CCC;
+  color: #ccc;
   font-size: 16px;
   margin: 0 0 30px 0;
   line-height: 1.6;
 `;
 
 const JoinButton = styled.button`
-  background: #FFA500;
+  background: #ffa500;
   color: white;
   border: none;
   padding: 12px 40px;
@@ -133,7 +136,7 @@ const JoinButton = styled.button`
   transition: background 0.3s;
 
   &:hover {
-    background: #FF8C00;
+    background: #ff8c00;
   }
 `;
 
@@ -146,24 +149,24 @@ const IconWrapper = styled.div`
 
 const ClockIcon = styled(AiOutlineClockCircle)`
   font-size: 200px;
-  color: #FFD699;
+  color: #ffd699;
   stroke-width: 0.5;
 `;
 
 const ShieldIcon = styled(BsShield)`
   font-size: 200px;
-  color: #FFD699;
+  color: #ffd699;
   stroke-width: 0.5;
 `;
 
 const TrendingIcon = styled(IoTrendingUpOutline)`
   font-size: 200px;
-  color: #FFD699;
+  color: #ffd699;
   stroke-width: 0.5;
 `;
 
 const ComparisonSection = styled.section`
-  background: #F5F5F0;
+  background: #f5f5f0;
   padding: 80px 20px;
   text-align: center;
 `;
@@ -187,22 +190,22 @@ const ComparisonGrid = styled.div`
 `;
 
 const ComparisonCard = styled.div`
-  background: ${props => props.highlight ? '#FFF' : 'white'};
+  background: ${(props) => (props.highlight ? "#FFF" : "white")};
   border-radius: 8px;
   padding: 30px;
   text-align: left;
 `;
 
 const ComparisonHeader = styled.div`
-  background: ${props => props.highlight ? '#FFA500' : 'transparent'};
-  color: ${props => props.highlight ? 'white' : '#333'};
+  background: ${(props) => (props.highlight ? "#FFA500" : "transparent")};
+  color: ${(props) => (props.highlight ? "white" : "#333")};
   font-size: 28px;
   font-weight: 400;
-  padding: ${props => props.highlight ? '12px 30px' : '10px 0'};
-  border-radius: ${props => props.highlight ? '25px' : '0'};
+  padding: ${(props) => (props.highlight ? "12px 30px" : "10px 0")};
+  border-radius: ${(props) => (props.highlight ? "25px" : "0")};
   margin-bottom: 30px;
   display: inline-block;
-  width: ${props => props.highlight ? 'auto' : '100%'};
+  width: ${(props) => (props.highlight ? "auto" : "100%")};
 `;
 
 const FeatureList = styled.div`
@@ -220,33 +223,115 @@ const FeatureItem = styled.div`
 `;
 
 const CheckIcon = styled(FaCheck)`
-  color: #4CAF50;
+  color: #4caf50;
   font-size: 18px;
   flex-shrink: 0;
 `;
 
 const CrossIcon = styled(FaTimes)`
-  color: #FF6B6B;
+  color: #ff6b6b;
   font-size: 18px;
   flex-shrink: 0;
 `;
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+`;
+
+const ModalContent = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 70%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  .modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #e09515;
+    outline: none;
+  }
+
+  button {
+    background: #f5a623;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+  }
+`;
 
 function SolarLandingPage() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Container>
+      {showModal && (
+        <ModalOverlay onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
+            <div className="modal">
+              <div>
+                <h2 className="join">Join the Waitlist</h2>
+                <p>Be the first to access our solar kits..</p>
+              </div>
+
+              <MdOutlineCancelPresentation
+                size={30}
+                onClick={() => setShowModal(false)}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
+
+            <input type="text" placeholder="Full Name" />
+            <input type="email" placeholder="Email Address" />
+
+            <button
+              onClick={() => setShowModal(false)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+            >
+              Join Waitlist <IoIosArrowRoundForward size={40} />
+            </button>
+          </ModalContent>
+        </ModalOverlay>
+      )}
       <HeroSection>
         <HeroTitle>Why Choose Us? Because We Make Solar Simple.</HeroTitle>
         <HeroSubtitle>
-          From flexible rent-to-own plans to reliable after-sales support,
-          we're redefining how Nigerians access clean energy.
+          From flexible rent-to-own plans to reliable after-sales support, we're
+          redefining how Nigerians access clean energy.
         </HeroSubtitle>
         <LearnMoreButton>Learn More</LearnMoreButton>
       </HeroSection>
 
       <WhySection>
-        <SectionTitle>Why Choose <span>Solute</span></SectionTitle>
+        <SectionTitle>
+          Why Choose <span>Solute</span>
+        </SectionTitle>
         <SectionSubtitle>
-          We're revolutionizing solar energy in Nigeria with technology and simplicity
+          We're revolutionizing solar energy in Nigeria with technology and
+          simplicity
         </SectionSubtitle>
 
         <FeaturesGrid>
@@ -254,9 +339,12 @@ function SolarLandingPage() {
             <FeatureContent>
               <FeatureTitle>24/7 Support</FeatureTitle>
               <FeatureDescription>
-                Get help whenever you need it through our web app and other social media platforms
+                Get help whenever you need it through our web app and other
+                social media platforms
               </FeatureDescription>
-              <JoinButton>Join Waitlist</JoinButton>
+              <JoinButton onClick={() => setShowModal(true)}>
+                Join Waitlist
+              </JoinButton>
             </FeatureContent>
             <IconWrapper>
               <ClockIcon />
@@ -267,9 +355,12 @@ function SolarLandingPage() {
             <FeatureContent>
               <FeatureTitle>Warranty Protected</FeatureTitle>
               <FeatureDescription>
-                All kits come with comprehensive warranty coverage for peace of mind
+                All kits come with comprehensive warranty coverage for peace of
+                mind
               </FeatureDescription>
-              <JoinButton>Join Waitlist</JoinButton>
+              <JoinButton onClick={() => setShowModal(true)}>
+                Join Waitlist
+              </JoinButton>
             </FeatureContent>
             <IconWrapper>
               <ShieldIcon />
@@ -280,9 +371,12 @@ function SolarLandingPage() {
             <FeatureContent>
               <FeatureTitle>Start Saving Immediately</FeatureTitle>
               <FeatureDescription>
-                Begin cutting your energy costs from day one with our affordable plans.
+                Begin cutting your energy costs from day one with our affordable
+                plans.
               </FeatureDescription>
-              <JoinButton>Join Waitlist</JoinButton>
+              <JoinButton onClick={() => setShowModal(true)}>
+                Join Waitlist
+              </JoinButton>
             </FeatureContent>
             <IconWrapper>
               <TrendingIcon />
