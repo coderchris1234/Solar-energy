@@ -39,6 +39,7 @@ const HeroTitle = styled.h1`
   font-weight: 700;
   margin: 0 0 10px 0;
   line-height: 1.2;
+  padding-top: 2rem;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;

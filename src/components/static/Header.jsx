@@ -96,6 +96,13 @@ function Header() {
 /* ------------------------- STYLED COMPONENTS --------------------------- */
 
 const HeaderContainer = styled.header`
+  position: fixed; /* ← added */
+  top: 0; /* ← added */
+  left: 0; /* ← added */
+  width: 100%; /* ← added */
+  z-index: 9999; /* ← added */
+  background: white; /* ensure background stays */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,7 +111,7 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid #e5e5e5;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px 15px; /* ← reduced padding */
   }
 `;
 
@@ -113,7 +120,6 @@ const LogoLink = styled(Link)`
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  /* background-color: red; */
 
   img {
     width: 95px;

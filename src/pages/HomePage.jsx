@@ -301,6 +301,7 @@ const HeroTitle = styled.h1`
   margin: 0 0 20px 0;
   line-height: 1.2;
   letter-spacing: -0.5px;
+  padding-top: 2rem;
 `;
 
 const HeroSubtitle = styled.p`
