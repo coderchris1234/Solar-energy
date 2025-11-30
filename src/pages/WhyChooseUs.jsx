@@ -24,6 +24,11 @@ const HeroSection = styled.section`
   text-align: center;
   padding: 40px 20px;
   color: white;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 80px 20px;
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -32,6 +37,11 @@ const HeroTitle = styled.h1`
   margin: 0 0 20px 0;
   line-height: 1.2;
   max-width: 800px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+    max-width: 90%;
+  }
 `;
 
 const HeroSubtitle = styled.p`
@@ -39,6 +49,11 @@ const HeroSubtitle = styled.p`
   margin: 0 0 30px 0;
   max-width: 600px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    max-width: 90%;
+  }
 `;
 
 const LearnMoreButton = styled.button`
@@ -55,12 +70,21 @@ const LearnMoreButton = styled.button`
   &:hover {
     background: #ff8c00;
   }
+
+  @media (max-width: 768px) {
+    padding: 12px 40px;
+    font-size: 16px;
+  }
 `;
 
 const WhySection = styled.section`
   background: #f5f5f0;
   padding: 60px 20px 80px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px 60px;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -71,6 +95,10 @@ const SectionTitle = styled.h2`
   span {
     color: #ffa500;
   }
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 const SectionSubtitle = styled.p`
@@ -80,6 +108,11 @@ const SectionSubtitle = styled.p`
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
 `;
 
 const FeaturesGrid = styled.div`
@@ -109,12 +142,20 @@ const FeatureRow = styled.div`
 const FeatureContent = styled.div`
   flex: 1;
   text-align: left;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const FeatureTitle = styled.h3`
   font-size: 36px;
   margin: 0 0 20px 0;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 const FeatureDescription = styled.p`
@@ -122,6 +163,11 @@ const FeatureDescription = styled.p`
   font-size: 16px;
   margin: 0 0 30px 0;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    color: #666;
+  }
 `;
 
 const JoinButton = styled.button`
@@ -138,6 +184,11 @@ const JoinButton = styled.button`
   &:hover {
     background: #ff8c00;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px 30px;
+    font-size: 15px;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -151,30 +202,50 @@ const ClockIcon = styled(AiOutlineClockCircle)`
   font-size: 200px;
   color: #ffd699;
   stroke-width: 0.5;
+
+  @media (max-width: 768px) {
+    font-size: 120px;
+  }
 `;
 
 const ShieldIcon = styled(BsShield)`
   font-size: 200px;
   color: #ffd699;
   stroke-width: 0.5;
+
+  @media (max-width: 768px) {
+    font-size: 120px;
+  }
 `;
 
 const TrendingIcon = styled(IoTrendingUpOutline)`
   font-size: 200px;
   color: #ffd699;
   stroke-width: 0.5;
+
+  @media (max-width: 768px) {
+    font-size: 120px;
+  }
 `;
 
 const ComparisonSection = styled.section`
   background: #f5f5f0;
   padding: 80px 20px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+  }
 `;
 
 const ComparisonTitle = styled.h2`
   font-size: 42px;
   margin: 0 0 60px 0;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 const ComparisonGrid = styled.div`
@@ -194,6 +265,10 @@ const ComparisonCard = styled.div`
   border-radius: 8px;
   padding: 30px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const ComparisonHeader = styled.div`
@@ -206,6 +281,11 @@ const ComparisonHeader = styled.div`
   margin-bottom: 30px;
   display: inline-block;
   width: ${(props) => (props.highlight ? "auto" : "100%")};
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    padding: 10px 20px;
+  }
 `;
 
 const FeatureList = styled.div`
@@ -233,6 +313,7 @@ const CrossIcon = styled(FaTimes)`
   font-size: 18px;
   flex-shrink: 0;
 `;
+
 const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -251,11 +332,28 @@ const ModalContent = styled.div`
   width: 70%;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 1.2rem;
+  }
+
   .modal {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+
+    h2 {
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+
+    p {
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
   }
 
   input {
@@ -265,6 +363,11 @@ const ModalContent = styled.div`
     border-radius: 6px;
     border: 1px solid #e09515;
     outline: none;
+
+    @media (max-width: 768px) {
+      padding: 0.8rem;
+      font-size: 14px;
+    }
   }
 
   button {
@@ -276,11 +379,17 @@ const ModalContent = styled.div`
     cursor: pointer;
     width: 100%;
     font-weight: 600;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+      font-size: 15px;
+    }
   }
 `;
 
 function SolarLandingPage() {
   const [showModal, setShowModal] = useState(false);
+
   return (
     <Container>
       {showModal && (
@@ -316,17 +425,26 @@ function SolarLandingPage() {
           </ModalContent>
         </ModalOverlay>
       )}
+
       <HeroSection>
         <HeroTitle>Why Choose Us? Because We Make Solar Simple.</HeroTitle>
         <HeroSubtitle>
           From flexible rent-to-own plans to reliable after-sales support, we're
           redefining how Nigerians access clean energy.
         </HeroSubtitle>
-        <LearnMoreButton>Learn More</LearnMoreButton>
+        <LearnMoreButton
+          style={{
+            textDecoration: "none",
+          }}
+          as="a"
+          href="#know-us"
+        >
+          Learn More
+        </LearnMoreButton>
       </HeroSection>
 
       <WhySection>
-        <SectionTitle>
+        <SectionTitle id="know-us">
           Why Choose <span>Solute</span>
         </SectionTitle>
         <SectionSubtitle>
