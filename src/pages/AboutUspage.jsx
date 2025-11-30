@@ -447,10 +447,18 @@ function App() {
           Learn who we are, what drives us, and how we're lighting up
           communities across Nigeria.
         </HeroSubtitle>
-        <Button>Learn More</Button>
+        <Button
+          style={{
+            textDecoration: "none",
+          }}
+          as="a"
+          href="#know-us"
+        >
+          Learn More
+        </Button>
       </HeroSection>
 
-      <Section>
+      <Section id="know-us">
         <SectionTitle>
           Get to <span>Know Us</span>
         </SectionTitle>
