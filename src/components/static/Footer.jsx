@@ -17,7 +17,7 @@ function Footer() {
     <FooterWrapper>
       <GetStartedSection>
         <GetStartedTitle>
-          Get Started <span>today</span>
+          Get Started<span>today</span>
         </GetStartedTitle>
         <GetStartedSubtitle>
           Power up your service enterprise today 💡
