@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import styled from "styled-components";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -6,6 +6,7 @@ import { BsShield } from "react-icons/bs";
 import { IoTrendingUpOutline } from "react-icons/io5";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineCancelPresentation } from "react-icons/md";
+import { useWaitlist } from "../Context/WaitlistContext";
 
 const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -37,7 +38,7 @@ const HeroTitle = styled.h1`
   margin: 0 0 20px 0;
   line-height: 1.2;
   max-width: 800px;
-  padding-top: 3rem;
+  padding-top: 6rem;
 
   @media (max-width: 768px) {
     font-size: 32px;
@@ -389,44 +390,10 @@ const ModalContent = styled.div`
 `;
 
 function SolarLandingPage() {
-  const [showModal, setShowModal] = useState(false);
+  const { openModal } = useWaitlist();
 
   return (
     <Container>
-      {showModal && (
-        <ModalOverlay onClick={() => setShowModal(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div className="modal">
-              <div>
-                <h2 className="join">Join the Waitlist</h2>
-                <p>Be the first to access our solar kits..</p>
-              </div>
-
-              <MdOutlineCancelPresentation
-                size={30}
-                onClick={() => setShowModal(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-
-            <button
-              onClick={() => setShowModal(false)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              Join Waitlist <IoIosArrowRoundForward size={40} />
-            </button>
-          </ModalContent>
-        </ModalOverlay>
-      )}
-
       <HeroSection>
         <HeroTitle>Why Choose Us? Because We Make Solar Simple.</HeroTitle>
         <HeroSubtitle>
@@ -461,9 +428,7 @@ function SolarLandingPage() {
                 Get help whenever you need it through our web app and other
                 social media platforms
               </FeatureDescription>
-              <JoinButton onClick={() => setShowModal(true)}>
-                Join Waitlist
-              </JoinButton>
+              <JoinButton onClick={openModal}>Join Waitlist</JoinButton>
             </FeatureContent>
             <IconWrapper>
               <ClockIcon />
@@ -477,9 +442,7 @@ function SolarLandingPage() {
                 All kits come with comprehensive warranty coverage for peace of
                 mind
               </FeatureDescription>
-              <JoinButton onClick={() => setShowModal(true)}>
-                Join Waitlist
-              </JoinButton>
+              <JoinButton onClick={openModal}>Join Waitlist</JoinButton>
             </FeatureContent>
             <IconWrapper>
               <ShieldIcon />
@@ -493,9 +456,7 @@ function SolarLandingPage() {
                 Begin cutting your energy costs from day one with our affordable
                 plans.
               </FeatureDescription>
-              <JoinButton onClick={() => setShowModal(true)}>
-                Join Waitlist
-              </JoinButton>
+              <JoinButton onClick={openModal}>Join Waitlist</JoinButton>
             </FeatureContent>
             <IconWrapper>
               <TrendingIcon />

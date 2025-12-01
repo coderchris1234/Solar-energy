@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
+import { useWaitlist } from "../Context/WaitlistContext";
 
 const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -395,7 +396,7 @@ const ModalContent = styled.div`
 
 function App() {
   const [copied, setCopied] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const { openModal } = useWaitlist();
 
   const copyReferralCode = () => {
     navigator.clipboard.writeText("SOLYTEFY471J");
@@ -405,39 +406,6 @@ function App() {
 
   return (
     <Container>
-      {showModal && (
-        <ModalOverlay onClick={() => setShowModal(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div className="modal">
-              <div>
-                <h2 className="join">Join the Waitlist</h2>
-                <p>Be the first to access our solar kits..</p>
-              </div>
-
-              <MdOutlineCancel
-                size={30}
-                onClick={() => setShowModal(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-
-            <button
-              onClick={() => setShowModal(false)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              Join Waitlist <IoIosArrowRoundForward size={40} />
-            </button>
-          </ModalContent>
-        </ModalOverlay>
-      )}
       <HeroSection>
         <HeroTitle>
           Powering Change,
@@ -481,7 +449,7 @@ function App() {
               through innovative financing and plug-and-play systems backed by
               manifesto technical expertise.
             </p>
-            <Button onClick={() => setShowModal(true)}>Join Waitlist</Button>
+            <Button onClick={openModal}>Join Waitlist</Button>
           </MissionText>
         </MissionCard>
       </Section>
@@ -498,7 +466,7 @@ function App() {
               From our web app to our flexible payment plans, we're constantly
               innovating to make solar energy easier and more accessible.
             </p>
-            <Button onClick={() => setShowModal(true)}>Join Waitlist</Button>
+            <Button onClick={openModal}>Join Waitlist</Button>
           </ValueText>
           <ValueIconWrapper>
             <FaLightbulb />
@@ -512,7 +480,7 @@ function App() {
               We're building more than a business, we're creating a network of
               energy-independent Nigerians who help each other thrive.
             </p>
-            <Button onClick={() => setShowModal(true)}>Join Waitlist</Button>
+            <Button onClick={openModal}>Join Waitlist</Button>
           </ValueText>
           <ValueIconWrapper>
             <FaUsers />
@@ -526,7 +494,7 @@ function App() {
               No hidden fees, no surprises. We believe in honest pricing and
               clear communication every step of the way.
             </p>
-            <Button onClick={() => setShowModal(true)}>Join Waitlist</Button>
+            <Button onClick={openModal}>Join Waitlist</Button>
           </ValueText>
           <ValueIconWrapper>
             <FaHeart />

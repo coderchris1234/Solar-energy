@@ -4,9 +4,10 @@ import { WiDaySunny } from "react-icons/wi";
 import { NavLink as RouterNavLink, Link } from "react-router-dom";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useWaitlist } from "../../Context/WaitlistContext";
 
 function Header() {
-  const [showModal, setShowModal] = useState(false);
+  const { openModal } = useWaitlist();
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -26,7 +27,7 @@ function Header() {
       </Nav>
 
       {/* Desktop Button */}
-      <JoinButton onClick={() => setShowModal(true)}>Join Waitlist</JoinButton>
+      <JoinButton onClick={openModal}>Join Waitlist</JoinButton>
 
       {/* Hamburger Icon - Mobile Only */}
       <MenuIcon onClick={() => setOpenMenu(true)}>☰</MenuIcon>
@@ -61,33 +62,6 @@ function Header() {
             </CustomNavLink>
           </MobileLinks>
         </MobileMenu>
-      )}
-
-      {/* WAITLIST MODAL */}
-      {showModal && (
-        <ModalOverlay onClick={() => setShowModal(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div className="modal">
-              <div>
-                <h2 className="join">Join the Waitlist</h2>
-                <p>Be the first to access our solar kits..</p>
-              </div>
-
-              <MdOutlineCancel
-                size={30}
-                onClick={() => setShowModal(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-
-            <button onClick={() => setShowModal(false)}>
-              Join Waitlist <IoIosArrowRoundForward size={40} />
-            </button>
-          </ModalContent>
-        </ModalOverlay>
       )}
     </HeaderContainer>
   );
