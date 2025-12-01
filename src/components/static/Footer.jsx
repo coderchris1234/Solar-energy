@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import styled from "styled-components";
 import {
   FaFacebookF,
@@ -9,10 +9,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useWaitlist } from "../../Context/WaitlistContext";
 
 function Footer() {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const { openModal } = useWaitlist();
   return (
     <FooterWrapper>
       <GetStartedSection>
@@ -22,33 +23,8 @@ function Footer() {
         <GetStartedSubtitle>
           Power up your service enterprise today 💡
         </GetStartedSubtitle>
-        <JoinButton onClick={() => setShowModal(true)}>
-          Join Waitlist
-        </JoinButton>
+        <JoinButton onClick={openModal}>Join Waitlist</JoinButton>
       </GetStartedSection>
-      {showModal && (
-        <ModalOverlay onClick={() => setShowModal(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div className="modal">
-              <div>
-                <h2 className="join">Join the Waitlist</h2>
-                <p>Be the first to access our solar kits..</p>
-              </div>
-
-              <MdOutlineCancel
-                size={30}
-                onClick={() => setShowModal(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-            <button onClick={() => setShowModal(false)}>
-              Join Waitlist <IoIosArrowRoundForward size={40} />
-            </button>
-          </ModalContent>
-        </ModalOverlay>
-      )}
 
       <FooterContainer>
         <Divider />

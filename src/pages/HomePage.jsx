@@ -9,11 +9,13 @@ import light from "/image2.png";
 import kit from "/image1.png";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
+import { useWaitlist } from "../Context/WaitlistContext";
 
 function Homepage() {
   const [monthlyPayment, setMonthlyPayment] = useState(15000);
   const [duration, setDuration] = useState(24);
-  const [showModal, setShowModal] = useState(false);
+
+  const { openModal } = useWaitlist();
 
   const minPayment = 10000;
   const maxPayment = 150000;
@@ -34,36 +36,11 @@ function Homepage() {
             you go with our flexible rent-to-own plans.
           </HeroSubtitle>
           <HeroButtons>
-            <PrimaryButton onClick={() => setShowModal(true)}>
-              Join Waitlist
-            </PrimaryButton>
+            <PrimaryButton onClick={openModal}>Join Waitlist</PrimaryButton>
             <SecondaryButton>Pre- Order</SecondaryButton>
           </HeroButtons>
         </HeroContent>
       </Hero>
-      {showModal && (
-        <ModalOverlay onClick={() => setShowModal(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <div className="modal">
-              <div>
-                <h2 className="join">Join the Waitlist</h2>
-                <p>Be the first to access our solar kits..</p>
-              </div>
-
-              <MdOutlineCancel
-                size={30}
-                onClick={() => setShowModal(false)}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-            <button onClick={() => setShowModal(false)}>
-              Join Waitlist <IoIosArrowRoundForward size={40} />
-            </button>
-          </ModalContent>
-        </ModalOverlay>
-      )}
 
       <ChooseKitSection>
         <SectionTitle>
@@ -121,9 +98,7 @@ function Homepage() {
               </Feature>
             </FeatureList>
             <KitPrice>₦25,000/month</KitPrice>
-            <KitButton primary onClick={() => setShowModal(true)}>
-              Join Waitlist
-            </KitButton>
+            <KitButton>Join Waitlist</KitButton>
           </KitCard>
         </KitsGrid>
       </ChooseKitSection>
